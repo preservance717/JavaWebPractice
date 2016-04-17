@@ -1,0 +1,68 @@
+function count_same_elements(collection) {
+  var arrSign = [];
+  var result = [];
+
+  for(var i = 0; i < collection.length; i++){
+    arrSign = collection[i].split("");
+
+    if(arrSign.length === 1){
+      result = existSign(collection[i], result, arrSign.length);
+    }else if(arrSign.length>1 && arrSign.length<10){
+      result = existSign(arrSign[0], result, parseInt(arrSign[2]));
+    }else if(arrSign.length>9 && arrSign.length<100){
+      result = existSign(arrSign[0], result, parseInt(arrSign[2]*10)+parseInt(arrSign[3]));
+    }
+  }
+  return result;
+}
+
+function existSign(arrSign, result, count){
+  for(var i = 0; i < result.length; i++){
+    if(arrSign[0] === result[i].name){
+      result[i].summary += count;
+      return result;
+    }
+  }
+  result[i] = {name:arrSign[0],summary:count};
+  return result;
+}
+
+//   var result = [];
+//   var count = 1;
+//
+//   for(var i = 0; i < collection.length; i++){
+//
+//     var existLine = collection[i].split("-");
+//     var existColon = collection[i].split(":");
+//
+//     if(collection[i].length > 1;){
+//       count += collection[i].length;
+//     }
+//     if(existColon[1]){
+//       result.push({key:existColon[0],count:parseInt(existColon[1])});
+//     }else if(existLine[1]){
+//       result.push({key:existLine[0],count:parseInt(existLine[1])});
+//     }else{
+//       if(collection[i] === collection[i+1]){
+//         ++count;
+//       }else{
+//         result.push({key:collection[i],count:count});
+//         count = 1;
+//       }
+//     }
+//   }
+//   return result;
+// }
+
+//在这里写入代码
+// var re = {};
+// for(var i=0,v,l = collection.length; v = collection[i],i<l; i++)
+// {
+//   var rv = /^([a-z]+)(?:.+?(\d+))?/i.exec(v);
+//   if (!re[rv[1]])
+//       re[rv[1]] = 0;
+//   re[rv[1]] += rv[2] ? parseInt(rv[2], 10) : 1;
+// }
+// return re;
+//   '\d'查找数字
+//   exec 检测字符串中指定的值
